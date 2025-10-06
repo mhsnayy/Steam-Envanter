@@ -1,8 +1,26 @@
-import React from 'react'
+import React, { useEffect } from 'react'
+import Inventory from './Inventory'
 
-function ListInventory() {
+function ListInventory({inventory}) {
+   useEffect(()=>{
+
+      console.log("Dönen Data: ",inventory)
+
+  },[inventory])
+
+
   return (
-    <div>ListInventory</div>
+    <>
+      <div>
+
+        {
+          inventory && inventory.map((inventor) => (
+            <Inventory key={inventor.assetid} inventor={inventor}/>
+          ))
+        }
+
+      </div>
+    </>
   )
 }
 

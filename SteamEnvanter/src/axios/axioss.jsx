@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
-import Inventory from '../components/Inventory';
+import ListInventory from '../components/ListInventory';
 
 function Axioss({ submittedData }) {
   const [inventory, setInventory] = useState(null); 
@@ -10,8 +10,9 @@ function Axioss({ submittedData }) {
       try {
         const res = await axios.get(url);
         console.log('submittedData:', submittedData);
-        console.log('response:', res.data);
-        setInventory(res.data); 
+        
+        setInventory(res.data.assets); 
+        console.log('response:', res.data.assets);
       } catch (err) {
         console.error('Axioss error:', err);
       }
@@ -27,7 +28,7 @@ function Axioss({ submittedData }) {
 
   return (
     <>
-      {inventory && <Inventory inventory={inventory} />}
+      {inventory && <ListInventory inventory={inventory} />}
     </>
   );
 }
